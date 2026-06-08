@@ -1,0 +1,1122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/ui_bg"
+    android:paddingStart="22dp"
+    android:paddingTop="0dp"
+    android:paddingEnd="22dp"
+    android:paddingBottom="0dp">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_game_left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.335" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_game_right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.70" />
+
+    <LinearLayout
+        android:id="@+id/top_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:layout_marginTop="2dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageButton
+            android:id="@+id/btn_back"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@android:color/transparent"
+            android:backgroundTint="@null"
+            android:contentDescription="pause"
+            android:minHeight="0dp"
+            android:minWidth="0dp"
+            android:padding="0dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/pause" />
+
+        <TextView
+            android:id="@+id/tv_room_state"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:maxLines="1"
+            android:paddingVertical="4dp"
+            android:text="@string/game_room_default"
+            android:textColor="@color/ui_text_secondary"
+            android:textSize="11sp"
+            android:textStyle="bold"
+            android:visibility="gone" />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/panel_left"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="0dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/guideline_game_left"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1.0" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_deck_count"
+                android:layout_width="86dp"
+                android:layout_height="112dp"
+                android:background="@drawable/bg_btn_primary"
+                android:gravity="center"
+                android:maxLines="2"
+                android:padding="4dp"
+                android:text="&#x624B;&#x724C;&#x5806;&#10;0"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_last_action"
+                android:layout_width="0dp"
+                android:layout_height="118dp"
+                android:layout_marginStart="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_panel_round"
+                android:gravity="center"
+                android:padding="8dp"
+                android:text=""
+                android:textColor="@color/black"
+                android:textSize="11sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_discard_count"
+            android:layout_width="1dp"
+            android:layout_height="1dp"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/tv_enemy_hand_count"
+            android:layout_width="1dp"
+            android:layout_height="1dp"
+            android:visibility="gone" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1.0" />
+    </LinearLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/panel_center"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/guideline_game_right"
+        app:layout_constraintStart_toStartOf="@id/guideline_game_left"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:id="@+id/enemy_top_row"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:translationY="0dp"
+            app:layout_constraintHorizontal_bias="0.125"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:id="@+id/enemy_cards_row"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clipChildren="false"
+                android:clipToPadding="false"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/container_enemy_char_2"
+                    android:layout_width="90dp"
+                    android:layout_height="150dp"
+                    android:clipChildren="false"
+                    android:clipToPadding="false"
+                    android:layout_marginEnd="11dp">
+
+                    <TextView
+                        android:id="@+id/tv_enemy_char_2"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:background="@drawable/bg_role_slot"
+                        android:gravity="center"
+                        android:padding="5dp"
+                        android:text="&#x89D2;&#x8272;2"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tv_enemy_char_2_ult"
+                        android:layout_width="wrap_content"
+                        android:layout_height="70dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="34dp"
+                        android:gravity="center_horizontal|top"
+                        android:includeFontPadding="false"
+                        android:lineSpacingExtra="0dp"
+                        android:lineSpacingMultiplier="0.9"
+                        android:text="●\n●\n○\n○\n○"
+                        android:textColor="@color/black"
+                        android:textSize="8sp"
+                        android:textStyle="bold"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tv_enemy_char_2_hp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="20dp"
+                        android:layout_marginEnd="4dp"
+                        android:layout_marginBottom="4dp"
+                        android:background="@drawable/bg_stat_chip"
+                        android:gravity="center"
+                        android:minWidth="34dp"
+                        android:paddingStart="6dp"
+                        android:paddingEnd="6dp"
+                        android:text="HP 25"
+                        android:textColor="@color/black"
+                        android:textSize="8sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/container_enemy_char_1"
+                    android:layout_width="90dp"
+                    android:layout_height="150dp"
+                    android:clipChildren="false"
+                    android:clipToPadding="false"
+                    android:layout_marginStart="11dp">
+
+                    <TextView
+                        android:id="@+id/tv_enemy_char_1"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:background="@drawable/bg_role_slot"
+                        android:gravity="center"
+                        android:padding="5dp"
+                        android:text="&#x89D2;&#x8272;1"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tv_enemy_char_1_ult"
+                        android:layout_width="wrap_content"
+                        android:layout_height="70dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="34dp"
+                        android:gravity="center_horizontal|top"
+                        android:includeFontPadding="false"
+                        android:lineSpacingExtra="0dp"
+                        android:lineSpacingMultiplier="0.9"
+                        android:text="●\n●\n○\n○\n○"
+                        android:textColor="@color/black"
+                        android:textSize="8sp"
+                        android:textStyle="bold"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tv_enemy_char_1_hp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="20dp"
+                        android:layout_marginEnd="4dp"
+                        android:layout_marginBottom="4dp"
+                        android:background="@drawable/bg_stat_chip"
+                        android:gravity="center"
+                        android:minWidth="34dp"
+                        android:paddingStart="6dp"
+                        android:paddingEnd="6dp"
+                        android:text="HP 25"
+                        android:textColor="@color/black"
+                        android:textSize="8sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_skill_hint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="&#x89D2;&#x8272;&#xFF1A;&#x6280;&#x80FD;&#x540D;"
+            android:textColor="@color/black"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@id/self_bottom_row"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/enemy_top_row" />
+
+        <LinearLayout
+            android:id="@+id/self_bottom_row"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            android:layout_marginBottom="0dp"
+            android:gravity="bottom|start"
+            android:orientation="horizontal"
+            android:translationY="0dp"
+            app:layout_constraintHorizontal_bias="0.125"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <LinearLayout
+                android:id="@+id/self_cards_row"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clipChildren="false"
+                android:clipToPadding="false"
+                android:orientation="horizontal">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/container_self_char_1"
+                    android:layout_width="90dp"
+                    android:layout_height="150dp"
+                    android:clipChildren="false"
+                    android:clipToPadding="false"
+                    android:layout_marginEnd="11dp">
+
+                    <TextView
+                        android:id="@+id/tv_self_char_1"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:background="@drawable/bg_role_slot"
+                        android:gravity="center"
+                        android:padding="5dp"
+                        android:text="&#x89D2;&#x8272;1"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tv_self_char_1_ult"
+                        android:layout_width="wrap_content"
+                        android:layout_height="70dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginBottom="34dp"
+                        android:gravity="center_horizontal|bottom"
+                        android:includeFontPadding="false"
+                        android:lineSpacingExtra="0dp"
+                        android:lineSpacingMultiplier="0.9"
+                        android:text="●\n●\n○\n○\n○"
+                        android:textColor="@color/black"
+                        android:textSize="8sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tv_self_char_1_hp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="20dp"
+                        android:layout_marginEnd="4dp"
+                        android:layout_marginTop="4dp"
+                        android:background="@drawable/bg_stat_chip"
+                        android:gravity="center"
+                        android:minWidth="34dp"
+                        android:paddingStart="6dp"
+                        android:paddingEnd="6dp"
+                        android:text="HP 25"
+                        android:textColor="@color/black"
+                        android:textSize="8sp"
+                        android:textStyle="bold"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/container_self_char_2"
+                    android:layout_width="90dp"
+                    android:layout_height="150dp"
+                    android:clipChildren="false"
+                    android:clipToPadding="false"
+                    android:layout_marginStart="11dp">
+
+                    <TextView
+                        android:id="@+id/tv_self_char_2"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:background="@drawable/bg_role_slot"
+                        android:gravity="center"
+                        android:padding="5dp"
+                        android:text="&#x89D2;&#x8272;2"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tv_self_char_2_ult"
+                        android:layout_width="wrap_content"
+                        android:layout_height="70dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginBottom="34dp"
+                        android:gravity="center_horizontal|bottom"
+                        android:includeFontPadding="false"
+                        android:lineSpacingExtra="0dp"
+                        android:lineSpacingMultiplier="0.9"
+                        android:text="●\n●\n○\n○\n○"
+                        android:textColor="@color/black"
+                        android:textSize="8sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tv_self_char_2_hp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="20dp"
+                        android:layout_marginEnd="4dp"
+                        android:layout_marginTop="4dp"
+                        android:background="@drawable/bg_stat_chip"
+                        android:gravity="center"
+                        android:minWidth="34dp"
+                        android:paddingStart="6dp"
+                        android:paddingEnd="6dp"
+                        android:text="HP 25"
+                        android:textColor="@color/black"
+                        android:textSize="8sp"
+                        android:textStyle="bold"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/tv_status"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="2dp"
+            android:gravity="center"
+            android:text="&#x7B49;&#x5F85;&#x540C;&#x6B65;..."
+            android:textColor="@color/ui_text_secondary"
+            android:textSize="10sp"
+            android:textStyle="bold"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/tv_enemy_hand_badge"
+        android:layout_width="64dp"
+        android:layout_height="47dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginEnd="6dp"
+        android:background="@drawable/bg_btn_primary_bottom_round"
+        android:clickable="false"
+        android:focusable="false"
+        android:gravity="center_horizontal|bottom"
+        android:includeFontPadding="false"
+        android:paddingBottom="6dp"
+        android:text="0"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@id/guideline_game_left"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/enemy_profile_box"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="0dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/tv_enemy_cost"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:text="Cost: 3"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="102dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="0dp"
+                android:gravity="end"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_enemy_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="end"
+                    android:maxLines="1"
+                    android:text="@string/game_enemy_default"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="6dp"
+                    android:layout_marginTop="3dp">
+
+                    <View
+                        android:id="@+id/view_enemy_turn_line_glow"
+                        android:layout_width="match_parent"
+                        android:layout_height="6dp"
+                        android:alpha="0"
+                        android:background="@drawable/bg_turn_line_glow" />
+
+                    <View
+                        android:id="@+id/view_enemy_turn_line"
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_gravity="center_vertical"
+                        android:background="@color/ui_turn_line_idle" />
+                </FrameLayout>
+            </LinearLayout>
+
+            <FrameLayout
+                android:layout_width="42dp"
+                android:layout_height="42dp"
+                android:foregroundGravity="center">
+
+                <View
+                    android:id="@+id/view_enemy_turn_glow"
+                    android:layout_width="42dp"
+                    android:layout_height="42dp"
+                    android:layout_gravity="center"
+                    android:alpha="0"
+                    android:background="@drawable/bg_turn_glow" />
+
+                <ImageView
+                    android:id="@+id/iv_enemy_avatar"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/bg_avatar_circle"
+                    android:clipToOutline="true"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/head" />
+            </FrameLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/self_profile_box"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:id="@+id/tv_self_cost"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Cost: 3"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <FrameLayout
+                android:layout_width="42dp"
+                android:layout_height="42dp"
+                android:foregroundGravity="center">
+
+                <View
+                    android:id="@+id/view_self_turn_glow"
+                    android:layout_width="42dp"
+                    android:layout_height="42dp"
+                    android:layout_gravity="center"
+                    android:alpha="0"
+                    android:background="@drawable/bg_turn_glow" />
+
+                <ImageView
+                    android:id="@+id/iv_self_avatar"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/bg_avatar_circle"
+                    android:clipToOutline="true"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/head" />
+            </FrameLayout>
+
+            <LinearLayout
+                android:layout_width="102dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="0dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_self_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:maxLines="1"
+                    android:text="@string/game_self_default"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="6dp"
+                    android:layout_marginTop="3dp">
+
+                    <View
+                        android:id="@+id/view_self_turn_line_glow"
+                        android:layout_width="match_parent"
+                        android:layout_height="6dp"
+                        android:alpha="0"
+                        android:background="@drawable/bg_turn_line_glow" />
+
+                    <View
+                        android:id="@+id/view_self_turn_line"
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_gravity="center_vertical"
+                        android:background="@color/ui_turn_line_idle" />
+                </FrameLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/panel_right"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        app:layout_constraintBottom_toBottomOf="@id/panel_center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/guideline_game_right"
+        app:layout_constraintTop_toTopOf="@id/panel_center">
+
+        <TextView
+            android:id="@+id/tv_hand_count"
+            android:layout_width="102dp"
+            android:layout_height="122dp"
+            android:layout_marginBottom="0dp"
+            android:background="@drawable/bg_btn_primary_top_round"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:translationY="24dp"
+            android:text="5"
+            android:textColor="@color/white"
+            android:textSize="46sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/btn_end_turn"
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:layout_marginBottom="4dp"
+            android:layout_marginEnd="12dp"
+            android:alpha="0.82"
+            android:background="@drawable/bg_btn_round_alert"
+            android:includeFontPadding="true"
+            android:gravity="center"
+            android:minHeight="0dp"
+            android:minWidth="0dp"
+            android:padding="0dp"
+            android:paddingStart="0dp"
+            android:paddingEnd="0dp"
+            android:text="&#x56DE;&#x5408;&#10;&#x5B8C;&#x6210;"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="10sp"
+            android:textStyle="bold"
+            android:backgroundTint="@null"
+            app:backgroundTint="@null"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <LinearLayout
+        android:id="@+id/layout_skill_popup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_panel_round"
+        android:elevation="14dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="10dp"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <Button
+            android:id="@+id/btn_skill_normal"
+            android:layout_width="104dp"
+            android:layout_height="90dp"
+            android:layout_marginEnd="6dp"
+            android:background="@drawable/bg_role_slot"
+            android:backgroundTint="@null"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:minHeight="0dp"
+            android:minWidth="0dp"
+            android:padding="4dp"
+            android:text="CS\n-"
+            android:textAllCaps="false"
+            android:textColor="@color/ui_text_secondary"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            app:backgroundTint="@null" />
+
+        <Button
+            android:id="@+id/btn_skill_power"
+            android:layout_width="104dp"
+            android:layout_height="90dp"
+            android:layout_marginStart="3dp"
+            android:layout_marginEnd="3dp"
+            android:background="@drawable/bg_role_slot"
+            android:backgroundTint="@null"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:minHeight="0dp"
+            android:minWidth="0dp"
+            android:padding="4dp"
+            android:text="SS\n-"
+            android:textAllCaps="false"
+            android:textColor="@color/ui_text_secondary"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            app:backgroundTint="@null" />
+
+        <Button
+            android:id="@+id/btn_skill_ultimate"
+            android:layout_width="104dp"
+            android:layout_height="90dp"
+            android:layout_marginStart="6dp"
+            android:background="@drawable/bg_role_slot"
+            android:backgroundTint="@null"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:minHeight="0dp"
+            android:minWidth="0dp"
+            android:padding="4dp"
+            android:text="FS\n-"
+            android:textAllCaps="false"
+            android:textColor="@color/ui_text_secondary"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            app:backgroundTint="@null" />
+    </LinearLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/panel_hand_popup"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/bg_btn_primary"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@id/panel_right"
+        app:layout_constraintEnd_toEndOf="@id/panel_right"
+        app:layout_constraintStart_toStartOf="@id/panel_right"
+        app:layout_constraintTop_toTopOf="@id/panel_right"
+        app:layout_constraintHeight_percent="0.84"
+        app:layout_constraintVertical_bias="0.54">
+
+        <TextView
+            android:id="@+id/tv_hand_index"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="14dp"
+            android:layout_marginTop="12dp"
+            android:gravity="start"
+            android:maxLines="1"
+            android:text="&#x624B;&#x724C;&#x70B9;&#x5F00;&#x540E;"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_hand_card_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="20dp"
+            android:gravity="center"
+            android:maxLines="2"
+            android:text="&#x5F53;&#x524D;&#x624B;&#x724C;"
+            android:textColor="@color/white"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_hand_card_desc"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="14dp"
+            android:layout_marginTop="60dp"
+            android:layout_marginEnd="14dp"
+            android:layout_marginBottom="14dp"
+            android:gravity="center"
+            android:lineSpacingExtra="1dp"
+            android:padding="12dp"
+            android:text="&#x5F53;&#x524D;&#x624B;&#x724C;&#10;&#x5177;&#x4F53;&#x5185;&#x5BB9;"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <FrameLayout
+            android:id="@+id/layout_card_nav"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <Button
+                android:id="@+id/btn_prev_card"
+                android:layout_width="58dp"
+                android:layout_height="58dp"
+                android:layout_gravity="top|end"
+                android:layout_marginTop="74dp"
+                android:layout_marginEnd="78dp"
+                android:background="@drawable/bg_btn_round_neutral"
+                android:gravity="center"
+                android:includeFontPadding="true"
+                android:minHeight="0dp"
+                android:minWidth="0dp"
+                android:paddingTop="2dp"
+                android:text="&#x4E0A;&#x5F20;"
+                android:textAllCaps="false"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:backgroundTint="@null"
+                android:visibility="gone"
+                app:backgroundTint="@null" />
+
+            <Button
+                android:id="@+id/btn_next_card"
+                android:layout_width="58dp"
+                android:layout_height="58dp"
+                android:layout_gravity="bottom|end"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="14dp"
+                android:background="@drawable/bg_btn_round_neutral"
+                android:gravity="center"
+                android:includeFontPadding="true"
+                android:minHeight="0dp"
+                android:minWidth="0dp"
+                android:paddingTop="2dp"
+                android:text="&#x4E0B;&#x5F20;"
+                android:textAllCaps="false"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:backgroundTint="@null"
+                app:backgroundTint="@null" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/layout_card_actions"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <Button
+                android:id="@+id/btn_use_card"
+                android:layout_width="58dp"
+                android:layout_height="58dp"
+                android:layout_gravity="bottom|center_horizontal"
+                android:layout_marginBottom="14dp"
+                android:background="@drawable/bg_btn_round_neutral"
+                android:gravity="center"
+                android:includeFontPadding="true"
+                android:minHeight="0dp"
+                android:minWidth="0dp"
+                android:paddingTop="2dp"
+                android:text="&#x6253;&#x51FA;"
+                android:textAllCaps="false"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:backgroundTint="@null"
+                app:backgroundTint="@null" />
+
+            <Button
+                android:id="@+id/btn_discard_card"
+                android:layout_width="58dp"
+                android:layout_height="58dp"
+                android:layout_gravity="bottom|start"
+                android:layout_marginStart="8dp"
+                android:layout_marginBottom="14dp"
+                android:background="@drawable/bg_btn_round_alert"
+                android:gravity="center"
+                android:includeFontPadding="true"
+                android:minHeight="0dp"
+                android:minWidth="0dp"
+                android:paddingTop="2dp"
+                android:text="&#x5F03;&#x724C;"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:backgroundTint="@null"
+                app:backgroundTint="@null" />
+        </FrameLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        android:id="@+id/overlay_scrim"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="#80000000"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/panel_pause_popup"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_panel_round"
+        android:orientation="vertical"
+        android:padding="14dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_percent="0.34">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="&#x6682;&#x505C;"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_pause_meta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:gravity="center"
+            android:maxLines="2"
+            android:text="@string/game_room_default"
+            android:textColor="@color/ui_text_secondary"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/btn_pause_resume"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/bg_btn_primary"
+            android:backgroundTint="@null"
+            android:text="&#x7EE7;&#x7EED;"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            app:backgroundTint="@null" />
+
+        <Button
+            android:id="@+id/btn_pause_log"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/bg_btn_secondary"
+            android:backgroundTint="@null"
+            android:text="&#x67E5;&#x770B;&#x5BF9;&#x5C40;&#x65E5;&#x5FD7;"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            app:backgroundTint="@null" />
+
+        <Button
+            android:id="@+id/btn_pause_exit"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/bg_btn_secondary"
+            android:backgroundTint="@null"
+            android:text="&#x9000;&#x51FA;&#x5BF9;&#x5C40;"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            app:backgroundTint="@null" />
+
+        <Button
+            android:id="@+id/btn_pause_surrender"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/bg_btn_alert"
+            android:backgroundTint="@null"
+            android:text="&#x6295;&#x964D;"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            app:backgroundTint="@null" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/panel_log_popup"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/bg_panel_round"
+        android:orientation="vertical"
+        android:padding="12dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintHeight_percent="0.66"
+        app:layout_constraintWidth_percent="0.62">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="&#x5BF9;&#x5C40;&#x65E5;&#x5FD7;"
+            android:textColor="@color/black"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="8dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_input_round"
+            android:padding="8dp">
+
+            <TextView
+                android:id="@+id/tv_log_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="&#x6682;&#x65E0;&#x65E5;&#x5FD7;"
+                android:textColor="@color/black"
+                android:textSize="13sp" />
+        </ScrollView>
+
+        <Button
+            android:id="@+id/btn_log_close"
+            android:layout_width="140dp"
+            android:layout_height="44dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/bg_btn_primary"
+            android:backgroundTint="@null"
+            android:text="&#x5173;&#x95ED;"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:backgroundTint="@null" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

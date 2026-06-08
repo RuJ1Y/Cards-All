@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="tag_card_background_res" type="id" />
+    <item name="tag_character_id" type="id" />
+</resources>
+

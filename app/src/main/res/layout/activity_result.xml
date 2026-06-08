@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/ui_bg"
+    android:clickable="true"
+    android:focusable="true"
+    android:paddingStart="22dp"
+    android:paddingTop="10dp"
+    android:paddingEnd="22dp"
+    android:paddingBottom="10dp">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_result_split"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.58" />
+
+    <LinearLayout
+        android:id="@+id/left_panel"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="12dp"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@id/tv_tap_hint"
+        app:layout_constraintEnd_toStartOf="@id/guideline_result_split"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/iv_avatar"
+            android:layout_width="128dp"
+            android:layout_height="128dp"
+            android:background="@drawable/bg_avatar_circle"
+            android:clipToOutline="true"
+            android:scaleType="centerCrop"
+            android:src="@drawable/head" />
+
+        <TextView
+            android:id="@+id/tv_player_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="&#x73A9;&#x5BB6;&#x540D;"
+            android:textColor="@color/black"
+            android:textSize="28sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:id="@+id/layout_role_cards"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="14dp"
+            android:layout_marginBottom="8dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_role_1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="8dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_role_slot"
+                android:gravity="center"
+                android:text="&#x89D2;&#x8272;&#x5361;"
+                android:textColor="@color/black"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_role_2"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="8dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_role_slot"
+                android:gravity="center"
+                android:text="&#x89D2;&#x8272;&#x5361;"
+                android:textColor="@color/black"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/right_panel"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@id/tv_tap_hint"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/guideline_result_split"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/tv_result"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="&#x80DC;"
+            android:textColor="@color/black"
+            android:textSize="160sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_reward"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="+15&#x91D1;&#x5E01;"
+            android:textColor="@color/black"
+            android:textSize="52sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_tap_hint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
+        android:alpha="0.72"
+        android:text="&#x70B9;&#x51FB;&#x4EFB;&#x610F;&#x4F4D;&#x7F6E;&#x8FD4;&#x56DE;&#x623F;&#x95F4;"
+        android:textColor="@color/ui_text_secondary"
+        android:textSize="11sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

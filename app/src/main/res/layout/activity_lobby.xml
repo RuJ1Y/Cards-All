@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/ui_bg"
+    android:paddingStart="11dp"
+    android:paddingTop="8dp"
+    android:paddingEnd="11dp"
+    android:paddingBottom="8dp">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_lobby_split"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.41" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/left_panel"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="11dp"
+        android:paddingStart="11dp"
+        android:paddingEnd="11dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/guideline_lobby_split"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_left_bottom_anchor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.95" />
+
+        <View
+            android:id="@+id/view_left_top_spacer"
+            android:layout_width="0dp"
+            android:layout_height="36dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:id="@+id/user_info_row"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/view_left_top_spacer">
+
+            <ImageView
+                android:id="@+id/iv_my_avatar"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:background="@drawable/bg_avatar_circle"
+                android:clipToOutline="true"
+                android:scaleType="centerCrop"
+                android:src="@drawable/head" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="9dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvPlayer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="@string/lobby_username_default"
+                    android:textColor="@color/black"
+                    android:textSize="19sp"
+                    android:textStyle="bold" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginTop="7dp"
+                    android:layout_marginEnd="11dp"
+                    android:background="#FFB0B0B0" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btn_character"
+            android:layout_width="0dp"
+            android:layout_height="74dp"
+            android:layout_marginTop="34dp"
+            android:background="@drawable/bg_btn_primary"
+            android:backgroundTint="@null"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:minHeight="0dp"
+            android:minWidth="0dp"
+            android:text="@string/lobby_btn_get_character"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/user_info_row"
+            app:backgroundTint="@null" />
+
+        <Button
+            android:id="@+id/btn_room"
+            android:layout_width="0dp"
+            android:layout_height="74dp"
+            android:layout_marginTop="38dp"
+            android:background="@drawable/bg_btn_primary"
+            android:backgroundTint="@null"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:minHeight="0dp"
+            android:minWidth="0dp"
+            android:text="@string/lobby_btn_enter_room"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btn_character"
+            app:backgroundTint="@null" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/right_panel"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="11dp"
+        android:layout_marginEnd="2dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/guideline_lobby_split"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_role_top_anchor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.22" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_role_bottom_anchor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.95" />
+
+        <TextView
+            android:id="@+id/tv_coin"
+            android:layout_width="0dp"
+            android:layout_height="44dp"
+            android:layout_marginTop="32dp"
+            android:background="@drawable/bg_panel_round"
+            android:gravity="center"
+            android:text="@string/lobby_coin_default"
+            android:textColor="@color/black"
+            android:textSize="19sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_default="percent"
+            app:layout_constraintWidth_percent="0.36" />
+
+        <FrameLayout
+            android:id="@+id/role_area"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="9dp"
+            android:layout_marginEnd="9dp"
+            app:layout_constraintBottom_toTopOf="@id/guideline_role_bottom_anchor"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/guideline_role_top_anchor">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/role_panel"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:background="@drawable/bg_panel_round"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.5"
+                    app:layout_constraintWidth_default="percent"
+                    app:layout_constraintWidth_percent="0.92"
+                    app:layout_constraintHeight_default="percent"
+                    app:layout_constraintHeight_percent="0.92">
+
+                    <TextView
+                        android:id="@+id/tv_role_1"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_marginStart="11dp"
+                        android:layout_marginTop="11dp"
+                        android:layout_marginEnd="0dp"
+                        android:layout_marginBottom="11dp"
+                        android:background="@drawable/bg_role_slot"
+                        android:gravity="center"
+                        android:text="@string/lobby_role_1"
+                        android:textColor="@color/black"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/tv_role_2"
+                        app:layout_constraintHorizontal_weight="1"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.5" />
+
+                    <TextView
+                        android:id="@+id/tv_role_2"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_marginStart="11dp"
+                        android:layout_marginTop="11dp"
+                        android:layout_marginEnd="11dp"
+                        android:layout_marginBottom="11dp"
+                        android:background="@drawable/bg_role_slot"
+                        android:gravity="center"
+                        android:text="@string/lobby_role_2"
+                        android:textColor="@color/black"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_weight="1"
+                        app:layout_constraintStart_toEndOf="@id/tv_role_1"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.5" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <Button
+                android:id="@+id/btn_change"
+                android:layout_width="122dp"
+                android:layout_height="53dp"
+                android:layout_gravity="bottom|end"
+                android:layout_marginEnd="19dp"
+                android:layout_marginBottom="11dp"
+                android:background="@drawable/bg_btn_primary"
+                android:backgroundTint="@null"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:minHeight="0dp"
+                android:minWidth="0dp"
+                android:text="@string/lobby_btn_change"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="19sp"
+                android:textStyle="bold"
+                app:backgroundTint="@null" />
+        </FrameLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
