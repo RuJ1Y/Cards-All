@@ -6,8 +6,13 @@ import io.ktor.server.application.call
 import io.ktor.server.response.respondText
 import io.ktor.server.routing.get
 import io.ktor.server.routing.routing
+import io.ktor.server.routing.post
 
 fun main(){
+
+    //总点击数
+    var totalClicks = 0
+
     //用 Netty 创建一个 Ktor 服务器，监听这台电脑的 8080 端口
     embeddedServer(
         factory = Netty,
@@ -17,6 +22,13 @@ fun main(){
         routing { //所有接口都写在 routing { } 里面
             get("/ping") {
                 call.respondText("""{"message":"pong"}""")
+            }
+            get("/clicks"){
+                call.respondText { """{"totalClicks";$totalClicks}""" }
+            }
+            post("/clicks"){
+                totalClicks+=1
+                call.respondText { """{"totalClicks";$totalClicks}""" }
             }
         }
     }.start(wait = true)//启动后保持运行
