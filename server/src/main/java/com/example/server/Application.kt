@@ -24,11 +24,11 @@ fun main(){
                 call.respondText("""{"message":"pong"}""")
             }
             get("/clicks"){
-                call.respondText { """{"totalClicks";$totalClicks}""" }
+                call.respondText("""{"totalClicks":$totalClicks}""")
             }
             post("/clicks"){
                 totalClicks+=1
-                call.respondText { """{"totalClicks";$totalClicks}""" }
+                call.respondText("""{"totalClicks":$totalClicks}""")
             }
         }
     }.start(wait = true)//启动后保持运行
