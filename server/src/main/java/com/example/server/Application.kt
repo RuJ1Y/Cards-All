@@ -16,7 +16,7 @@ fun main(){
     ) {
         routing { //所有接口都写在 routing { } 里面
             get("/ping") {
-                call.respondText("pong")
+                call.respondText("""{"message":"pong"}""")
             }
         }
     }.start(wait = true)//启动后保持运行
