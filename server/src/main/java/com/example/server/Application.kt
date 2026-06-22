@@ -7,11 +7,12 @@ import io.ktor.server.response.respondText
 import io.ktor.server.routing.get
 import io.ktor.server.routing.routing
 import io.ktor.server.routing.post
+import java.util.concurrent.atomic.AtomicInteger
 
 fun main(){
 
-    //总点击数
-    var totalClicks = 0
+    //创建一个线程安全的整数，初始值是 0
+    val totalClicks = AtomicInteger(0)
 
     //用 Netty 创建一个 Ktor 服务器，监听这台电脑的 8080 端口
     embeddedServer(
@@ -24,11 +25,11 @@ fun main(){
                 call.respondText("""{"message":"pong"}""")
             }
             get("/clicks"){
-                call.respondText("""{"totalClicks":$totalClicks}""")
+                call.respondText("""{"totalClicks":${totalClicks.get()}}""")
             }
             post("/clicks"){
-                totalClicks+=1
-                call.respondText("""{"totalClicks":$totalClicks}""")
+                val newTotalClicks = totalClicks.incrementAndGet()//安全地+1，然后返回加完后的新数字
+                call.respondText("""{"totalClicks":$newTotalClicks}""")
             }
         }
     }.start(wait = true)//启动后保持运行
