@@ -1,6 +1,8 @@
 plugins {
     //去掉library标记
     alias(libs.plugins.kotlin.jvm)
+    //允许 Kotlin 的 data class 被自动转换成 JSON
+    alias(libs.plugins.kotlin.serialization)
 
     //标记为app
     application
@@ -18,6 +20,11 @@ kotlin {
 dependencies {
     implementation(libs.ktor.server.core.jvm)
     implementation(libs.ktor.server.netty.jvm)
+
+    //让 Ktor 知道怎么返回不同格式的数据
+    implementation(libs.ktor.server.content.negotiation.jvm)
+    //让 Ktor 能把 Kotlin 对象转成 JSON
+    implementation(libs.ktor.serialization.kotlinx.json.jvm)
 }
 //标记入口文件
 application {
