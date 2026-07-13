@@ -12,6 +12,7 @@ kotlinxSerializationJsonVersion = "1.6.2"
 ktorClientAndroid = "3.4.2"
 ktorClientAndroidVersion = "2.3.11"
 lifecycleRuntimeKtx = "2.10.0"
+logbackClassic = "1.5.38"
 material = "1.13.0"
 activity = "1.13.0"
 constraintlayout = "2.2.1"
@@ -19,6 +20,7 @@ constraintlayout = "2.2.1"
 lifecycle-version = "2.10.0"
 postgrestKt = "2.5.0"
 realtimeKt = "2.5.0"
+slf4jApi = "2.0.18"
 supabaseVersion = "2.5.0"
 
 
@@ -38,6 +40,7 @@ ktor-serialization-kotlinx-json-jvm = { module = "io.ktor:ktor-serialization-kot
 ktor-server-content-negotiation-jvm = { module = "io.ktor:ktor-server-content-negotiation-jvm", version.ref = "ktorClientAndroidVersion" }
 ktor-server-netty-jvm = { module = "io.ktor:ktor-server-netty-jvm", version.ref = "ktorClientAndroidVersion" }
 ktor-server-core-jvm = { module = "io.ktor:ktor-server-core-jvm", version.ref = "ktorClientAndroidVersion" }
+logback-classic = { module = "ch.qos.logback:logback-classic", version.ref = "logbackClassic" }
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 androidx-activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
 androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
@@ -47,6 +50,7 @@ postgrest-kt = { module = "io.github.jan-tennert.supabase:postgrest-kt", version
 postgrest-kt-v250 = { module = "io.github.jan-tennert.supabase:postgrest-kt", version.ref = "supabaseVersion" }
 realtime-kt = { module = "io.github.jan-tennert.supabase:realtime-kt", version.ref = "postgrestKt" }
 realtime-kt-v250 = { module = "io.github.jan-tennert.supabase:realtime-kt", version.ref = "realtimeKt" }
+slf4j-api = { module = "org.slf4j:slf4j-api", version.ref = "slf4jApi" }
 
 
 [plugins]

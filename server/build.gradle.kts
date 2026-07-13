@@ -25,6 +25,9 @@ dependencies {
     implementation(libs.ktor.server.content.negotiation.jvm)
     //让 Ktor 能把 Kotlin 对象转成 JSON
     implementation(libs.ktor.serialization.kotlinx.json.jvm)
+    //后端日志
+    implementation(libs.logback.classic)
+    implementation(libs.slf4j.api)
 }
 //标记入口文件
 application {

@@ -17,7 +17,8 @@ Cards-All 是一个围绕原创卡牌/策略游戏的多端社区项目，同时
 - Godot 游戏客户端。
 - Android 论坛客户端。
 - Web 管理后台。
-- 后端学习支线：Kotlin + Ktor + PostgreSQL，本地学习为主，暂不急着接项目。
+- 后端学习主线：Kotlin + Ktor + PostgreSQL，本地学习优先，逐步补齐真实后端知识面。
+- Supabase 暂时放弃主线，只保留为以后对照和备用资料。
 - iOS 论坛端：低优先级扩展。
 
 ## 2. 阶段目标
@@ -37,7 +38,7 @@ Cards-All 是一个围绕原创卡牌/策略游戏的多端社区项目，同时
 - 把暑假 MVP 打磨成完整版本。
 - 补齐测试、文档、部署说明和演示材料。
 - 后端学习达到能解释 API、数据库、鉴权、分层和局域网访问。
-- 再决定项目后端采用 Supabase、Ktor，还是混合方案。
+- 再决定 Ktor 是否升级为项目主后端，或是否需要引入其他方案辅助。
 
 ## 3. 成员分工
 
@@ -56,6 +57,8 @@ Cards-All 是一个围绕原创卡牌/策略游戏的多端社区项目，同时
 - Android：Kotlin，现代 Android / Jetpack 生态。
 - Godot：Godot 4.x。
 - 后端学习：Kotlin + Ktor，PostgreSQL，Gradle，kotlinx.serialization。
+- 后端路线原则：为了未来求职和 AI 时代的适应性，优先拓宽 HTTP、API、数据库、鉴权、部署、日志和分层架构等通用能力。
+- Supabase：暂不作为当前学习或项目主线。
 - Web 后台：TypeScript + 主流前端框架和成熟 UI 组件库。
 - 数据库学习：客户端不直连数据库，必须经过 API。
 
@@ -72,7 +75,7 @@ Cards-All 是一个围绕原创卡牌/策略游戏的多端社区项目，同时
 
 - Godot 游戏端和 Android 论坛端优先独立 Git 仓库，不共用一个仓库。
 - `D:\Cards-All` 作为本地总工作区和文档中枢。
-- Ktor 后端学习先本地实验，稳定后再决定是否单独建仓。
+- Ktor 后端学习先本地实验，稳定后再决定是否单独建仓或接入项目主流程。
 
 GitHub 仓库名建议：
 
@@ -94,7 +97,7 @@ Android forum client for the Cards community / Cards 社区 Android 论坛客户
 
 1. 所有成员遵守独立分支工作流。
 2. 精简文档，减少上下文负担。
-3. Ktor 后端学习先跑通本地最小链路。
+3. Ktor 后端学习先跑通本地最小链路，并逐步进入 PostgreSQL、CRUD、分层、鉴权和局域网访问。
 4. Godot 和 Android 论坛各自推进 MVP。
 5. Web 管理后台后续跟进。
 6. 每次任务结束必须交接。
@@ -104,5 +107,6 @@ Android forum client for the Cards community / Cards 社区 Android 论坛客户
 - `docs/TEAM_RULES.md`：所有成员硬规则。
 - `docs/KTOR_BACKEND_LEARNING.md`：Ktor 后端学习路线。
 - `docs/ARCHITECTURE.md`：当前架构基线。
+- `docs/adr/`：关键技术取舍记录。
 - `docs/SUPABASE_LEARNING.md`：Supabase 备用学习资料。
 - `docs/handoff/`：历史交接记录，可能过期，使用前要对照本文档。

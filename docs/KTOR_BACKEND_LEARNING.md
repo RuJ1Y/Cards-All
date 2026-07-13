@@ -2,6 +2,8 @@
 
 目标：用 Kotlin + Ktor 学后端基础。当前先做知识积累，不急着接 Cards 项目。
 
+已学内容的复习笔记见 `docs/KTOR_BACKEND_NOTES.docx`。
+
 Kotlin 是语言，Ktor 是后端框架。
 
 ## 1. 当前边界
