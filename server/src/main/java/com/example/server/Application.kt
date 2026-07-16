@@ -35,6 +35,14 @@ fun main(){
             get("/clicks"){
                 call.respond(ClicksResponse(totalClicks = totalClicks.get()))
             }
+            get("/hello") {
+                val name = call.request.queryParameters["name"]?:"陌生人"//创建变量记录客户端传参
+                call.respond(mapOf("message" to "你好，$name"))
+            }
+            get("/post/{id}") {
+                val id = call.parameters["id"]?:"未知"
+                call.respond(mapOf("postId" to id))
+            }
             post("/clicks"){
                 val newTotalClicks = totalClicks.incrementAndGet()//安全地+1，然后返回加完后的新数字
                 call.respond(ClicksResponse(totalClicks = newTotalClicks))
