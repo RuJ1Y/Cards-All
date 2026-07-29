@@ -4,8 +4,9 @@
 
 ## 1. 当前结论
 
-- Godot 游戏端、Android 论坛端优先独立仓库。
-- 根目录 `D:\Cards-All` 是总工作区和文档中枢。
+- 当前 Gradle 工程包含 `app`（现有 Android 游戏）、`community`（Android 配套社区）和 `server`（Ktor 学习服务）三个并列模块。
+- `app` 与 `community` 使用不同 `applicationId`，分别生成独立 APK；`server` 独立运行，不进入 APK。
+- Godot 游戏端仍保持独立项目；根目录 `D:\Cards-All` 同时作为总工作区和文档中枢。
 - Supabase 暂时放弃主线，只保留备用资料。
 - 后端当前以 Ktor 学习为主线，目标是拓宽真实后端知识面。
 - Ktor 不急着承担完整项目主线，但所有客户端后续都应按“访问 API，而不是直连数据库”的方向设计。

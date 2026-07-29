@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="community_primary">#245B57</color>
+    <color name="community_on_primary">#FFFFFF</color>
+    <color name="community_background">#F4F6F6</color>
+    <color name="community_surface">#FFFFFF</color>
+    <color name="community_text">#1A1C1C</color>
+    <color name="community_text_secondary">#5F6363</color>
+</resources>

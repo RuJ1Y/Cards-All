@@ -35,20 +35,23 @@ fun main(){
             json()
         }
         routing { //所有接口都写在 routing { } 里面
+
             get("/ping") {
 //                call.respondText("""{"message":"pong"}""")//手搓json
                 call.respond(PingResponse("pong"))//自动转为json
             }
+
             get("/clicks"){
                 call.respond(ClicksResponse(totalClicks = totalClicks.get()))
             }
+
             get("/hello") {
                 val name = call.request.queryParameters["name"]?:"陌生人"//创建变量记录客户端传参
                 call.respond(mapOf("message" to "你好，$name"))
             }
+
             get("/posts/{id}") {
                 val id = call.parameters["id"]?.toIntOrNull()
-
                 if (id == null) {
                     call.respond(
                         HttpStatusCode.BadRequest,
@@ -56,9 +59,7 @@ fun main(){
                     )
                     return@get
                 }
-
                 val post = posts[id]
-
                 if (post == null) {
                     call.respond(
                         HttpStatusCode.NotFound,
@@ -66,25 +67,41 @@ fun main(){
                     )
                     return@get
                 }
-
                 call.respond(post)
             }
+
             get("/posts") {
                 call.respond(posts.values.toList())
             }
+
             post("/clicks"){
                 val newTotalClicks = totalClicks.incrementAndGet()//安全地+1，然后返回加完后的新数字
                 call.respond(ClicksResponse(totalClicks = newTotalClicks))
             }
+
             post("/posts"){
                 val request = call.receive<CreatePostRequest>()//保存客户端上传的帖子数据
+                if (request.title.isBlank()) {
+                    call.respond(
+                        HttpStatusCode.BadRequest,
+                        mapOf("message" to "标题不能为空")
+                    )
+                    return@post
+                }
+                if (request.content.isBlank()) {
+                    call.respond(
+                        HttpStatusCode.BadRequest,
+                        mapOf("message" to "帖子内容不能为空")
+                    )
+                    return@post
+                }
                 val post = PostResponse(//替换为带id的成品帖子
                     id = postIdCounter.incrementAndGet(),
                     title = request.title,
                     content = request.content
                 )
                 posts[post.id]=post//保存帖子到仓库
-                call.respond(post)
+                call.respond(HttpStatusCode.Created, post)
             }
 
         }

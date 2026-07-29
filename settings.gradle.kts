@@ -21,5 +21,5 @@ dependencyResolutionManagement {
 
 rootProject.name = "Cards"
 include(":app")
-
+include(":community")
 include(":server")

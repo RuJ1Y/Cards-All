@@ -73,8 +73,9 @@ Cards-All 是一个围绕原创卡牌/策略游戏的多端社区项目，同时
 
 仓库策略：
 
-- Godot 游戏端和 Android 论坛端优先独立 Git 仓库，不共用一个仓库。
-- `D:\Cards-All` 作为本地总工作区和文档中枢。
+- 当前 `D:\Cards-All` 使用一个 Git 仓库管理 Gradle 多模块工程：`app` 是现有 Android 游戏，`community` 是 Android 配套社区，`server` 是 Ktor 学习服务。
+- `app` 和 `community` 分别打包、独立安装；后续若协作或发布流程需要，再评估拆分仓库。
+- Godot 游戏端保持独立项目，`D:\Cards-All` 同时作为本地总工作区和文档中枢。
 - Ktor 后端学习先本地实验，稳定后再决定是否单独建仓或接入项目主流程。
 
 GitHub 仓库名建议：
