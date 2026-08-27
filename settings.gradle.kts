@@ -19,7 +19,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Cards"
-include(":app")
+rootProject.name = "CardsCommunity"
 include(":community")
 include(":server")

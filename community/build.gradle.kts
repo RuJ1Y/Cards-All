@@ -1,6 +1,9 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+
+    //允许 Kotlin 的 data class 被自动转换成 JSON
+    alias(libs.plugins.kotlin.serialization)
 }
 
 android {
@@ -47,10 +50,15 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
+    //让协程跟随 Activity 生命周期运行
     implementation(libs.androidx.lifecycle.runtime.ktx)
 
     //Ktor Client 的 Android 网络引擎
     implementation(libs.ktor.client.android.v2311)
+    //让 Ktor Client 知道怎么处理不同格式的数据
+    implementation(libs.ktor.client.content.negotiation.v2311)
+    //让 Ktor Client 能在 JSON 和 Kotlin 对象之间转换
+    implementation(libs.ktor.serialization.kotlinx.json.jvm)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

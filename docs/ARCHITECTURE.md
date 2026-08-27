@@ -1,96 +1,61 @@
-﻿# 架构基线
+# 架构基线
 
-本文档只写当前基线。历史文档若冲突，以 `PROJECT_CENTER.md` 和用户最新指令为准。
+## 1. 当前结构
 
-## 1. 当前结论
-
-- 当前 Gradle 工程包含 `app`（现有 Android 游戏）、`community`（Android 配套社区）和 `server`（Ktor 学习服务）三个并列模块。
-- `app` 与 `community` 使用不同 `applicationId`，分别生成独立 APK；`server` 独立运行，不进入 APK。
-- Godot 游戏端仍保持独立项目；根目录 `D:\Cards-All` 同时作为总工作区和文档中枢。
-- Supabase 暂时放弃主线，只保留备用资料。
-- 后端当前以 Ktor 学习为主线，目标是拓宽真实后端知识面。
-- Ktor 不急着承担完整项目主线，但所有客户端后续都应按“访问 API，而不是直连数据库”的方向设计。
-- Android / Godot 可以先用 mock、临时 API 或已确认的数据源。
+- `community`：Android 论坛客户端，独立生成 APK。
+- `server`：Ktor JVM 服务，独立运行。
+- Supabase 仅保留为备用资料，当前后端主线是 Ktor。
 - 客户端不能直接连接数据库。
-- 每个成员必须在自己的分支工作，确认后再提交/合并。
+- 每个成员在自己的分支工作，用户确认后才能提交、合并或推送。
 
-## 2. 目标结构
+## 2. 数据流
 
 ```mermaid
 flowchart LR
     Android["Android 论坛"]
-    Godot["Godot 游戏"]
     Admin["Web 管理后台"]
-    Api["API 层\nKtor 优先学习和验证"]
-    Db["PostgreSQL / 未来确认数据源"]
-    Docs["docs/"]
+    IOS["未来 iOS 论坛"]
+    Api["Ktor API"]
+    Db["PostgreSQL"]
 
     Android --> Api
-    Godot --> Api
     Admin --> Api
+    IOS --> Api
     Api --> Db
-    Docs -.约束.-> Android
-    Docs -.约束.-> Godot
-    Docs -.约束.-> Admin
-    Docs -.约束.-> Api
 ```
 
-## 3. 依赖方向
-
-通用方向：
+客户端通用依赖方向：
 
 ```text
-UI -> 状态/ViewModel/Controller -> Repository/Service -> API/数据源
+UI -> 状态/ViewModel -> Repository -> API
 ```
 
-禁止：
+后端通用依赖方向：
 
-- UI 直接散落数据库或后端细节。
-- 多端各自猜字段。
-- 客户端直连 PostgreSQL。
-- 为了快把业务规则复制到多个端。
+```text
+Route -> Service -> Repository -> PostgreSQL
+```
 
-## 4. Ktor 后端学习主线
+## 3. 当前后端学习目标
 
-当前目标：
-
-- `/ping`
-- JSON 请求/响应。
+- HTTP 与 JSON 请求/响应。
+- 帖子最小 CRUD。
 - PostgreSQL 本地连接。
-- 最小 CRUD。
 - route / service / repository / dto 分层。
-- 局域网访问。
-- 后续逐步补鉴权、日志、配置、测试和部署常识。
+- 统一错误处理、鉴权、日志、配置和测试。
+- 局域网访问与后续部署基础。
 
-暂不负责：
+## 4. 禁止事项
 
-- 完整项目后端。
-- 线上部署。
-- 复杂权限。
-- 联机游戏结算。
+- UI 直接包含数据库或后端细节。
+- 客户端直连 PostgreSQL。
+- 多端各自猜测接口字段。
+- 密钥、密码和服务器地址硬编码后提交。
+- 为了省事绕开权限、错误处理和验证。
 
-## 5. Git 架构规则
+## 5. 需要 ADR 的变化
 
-- `master` / `main` 只放用户确认后的稳定结果。
-- 成员只在自己的任务分支工作。
-- 分支名用短横线，例如 `ktor-learning-ping`。
-- 未经用户确认，不 commit / merge / push。
-- 合并前必须有交接和验证结果。
-
-## 6. 需要 ADR 的情况
-
-以下情况必须写 ADR 或更新中心文档：
-
-- 后端从学习支线变成项目主线。
-- 选择 Supabase、Ktor 或混合架构。
-- 重新启用 Supabase 作为主线。
-- 引入新框架、数据库、部署方式。
+- 更换主后端、数据库或部署方式。
+- 引入新的核心框架。
 - 改变仓库拆分方式。
-- 改变账号、权限、支付、审核等关键规则。
-
-## 7. 当前风险
-
-- 旧 README、旧 handoff、旧 Supabase 文档可能过期。
-- Android 现有代码可能已有 Supabase 依赖，改动前要先查代码。
-- 根目录已有 `.idea/` 未跟踪，不要误提交。
-- 文档要继续保持短小，避免消耗成员上下文。
+- 改变账号、权限、审核等关键规则。

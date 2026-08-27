@@ -11,8 +11,8 @@
 
 - Supabase 暂时放弃主线，只保留为备用学习资料和未来对照方案。
 - 后端学习主线改为 Kotlin + Ktor + PostgreSQL。
-- 当前 Ktor 先服务学习，不立即承诺承担完整 Cards 项目后端。
-- Android、Godot、Web 后台后续都按“客户端访问 API，不直连数据库”的边界设计。
+- 当前 Ktor 先服务学习，再逐步承担论坛项目后端。
+- Android、Web 后台和未来 iOS 端都按“客户端访问 API，不直连数据库”的边界设计。
 - Ktor 学到 PostgreSQL、CRUD、分层、错误处理、鉴权和局域网访问后，再评估是否接入项目主流程。
 
 ## 影响
@@ -25,11 +25,11 @@
 ## 替代方案
 
 - 继续 Supabase 主线：交付更快，但后端底层学习较少。
-- Ktor 立即接管完整项目后端：学习密度高，但当前容易拖慢 Android、Godot 和后台 MVP。
+- Ktor 立即接管完整项目后端：学习密度高，但当前容易拖慢 Android 和后台 MVP。
 - 混合方案：后续可评估，但现阶段会增加认知负担。
 
 ## 后续动作
 
 - 继续推进 `docs/KTOR_BACKEND_LEARNING.md` 中的学习顺序。
 - 下一阶段重点：Query、Path、JSON Body、PostgreSQL、CRUD、route/service/repository 分层。
-- 等 Ktor 基础链路稳定后，再写 ADR 决定是否把 Ktor 升级为 Cards 项目主后端。
+- 等 Ktor 基础链路稳定后，再写 ADR 决定具体接入节奏。

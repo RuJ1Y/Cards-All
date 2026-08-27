@@ -18,7 +18,8 @@ class MainActivity : AppCompatActivity() {
 
         lifecycleScope.launch {
             try {
-                binding.emptyMessage.text = ServerApi.ping()
+                val posts = ServerApi.getPosts()
+                binding.emptyMessage.text = "帖子数量:${posts.size}"
             } catch (e: Exception) {
                 binding.emptyMessage.text = "连接失败：${e.message}"
             }

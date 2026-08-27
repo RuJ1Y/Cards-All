@@ -11,13 +11,13 @@ Kotlin 是语言，Ktor 是后端框架。
 - 本地学习优先，不需要公网服务器。
 - 局域网访问时，你的电脑就是服务端主机。
 - 数据库先用本机或 Docker PostgreSQL。
-- Android / Godot 不直连数据库，必须经过 Ktor API。
+- Android / Web / iOS 客户端不直连数据库，必须经过 Ktor API。
 - 学到一定阶段后，再决定是否接入项目。
 
 基本链路：
 
 ```text
-Android / Godot / 浏览器 / Apifox
+Android / Web / iOS / 浏览器 / Apifox
 -> Ktor API: http://电脑局域网IP:8080
 -> PostgreSQL
 ```
@@ -76,7 +76,7 @@ Android / Godot / 浏览器 / Apifox
 要做：
 
 - 本机或 Docker 启动 PostgreSQL。
-- 创建 `cards_learning`。
+- 创建 `cards_community_learning`。
 - 建 `posts` 表。
 - 手写 `select / insert / update / delete`。
 

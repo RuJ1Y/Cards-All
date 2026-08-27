@@ -107,6 +107,7 @@ fun main(){
         }
     }.start(wait = true)//启动后保持运行
 }
+
 //自定义数据类，方便后续自动转为标准json
 @Serializable//标记这个类可以被转换成 JSON，也可以从 JSON 转回来
 data class PingResponse(
