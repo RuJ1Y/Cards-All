@@ -1,108 +1,69 @@
-﻿# 项目中枢
+# 项目中枢
 
-本文件是最高层事实来源。成员开工前只需先读：
-
-1. `docs/PROJECT_CENTER.md`
-2. `docs/TEAM_RULES.md`
-3. 自己角色相关文档
-
-若旧 README、历史交接或旧架构文档冲突，以本文档和用户最新指令为准。
+本文件是最高层事实来源。成员开工前先读本文和 `docs/TEAM_RULES.md`。
 
 ## 1. 项目定位
 
-Cards-All 是一个围绕原创卡牌/策略游戏的多端社区项目，同时服务毕设、实习简历和个人学习。
+Cards Community 是面向毕设、实习和长期维护的论坛项目。
 
 目标形态：
 
-- Godot 游戏客户端。
 - Android 论坛客户端。
+- Kotlin + Ktor 后端。
+- PostgreSQL 数据库。
 - Web 管理后台。
-- 后端学习支线：Kotlin + Ktor + PostgreSQL，本地学习为主，暂不急着接项目。
 - iOS 论坛端：低优先级扩展。
 
 ## 2. 阶段目标
 
-### 暑假
+暑假：完成帖子列表、详情、发布、评论等主流程，并跑通 Ktor、JSON 和最小 CRUD。
 
-- Godot 游戏做出可演示原型。
-- Android 论坛跑通列表、详情、发布、评论等主流程。
-- Web 管理后台做最小审核/用户/公告能力，至少完成一到两个。
-- Ktor 后端学习跑通 `/ping`、JSON、PostgreSQL 连接和最小 CRUD。
-- 沉淀 README、截图、演示和毕设材料。
+一个学期：补齐账号、鉴权、测试、部署说明、管理后台和毕设材料，形成可演示版本。
 
-暂缓：完整 IM、复杂联机、推荐算法、完整 iOS、线上生产部署。
-
-### 一个学期
-
-- 把暑假 MVP 打磨成完整版本。
-- 补齐测试、文档、部署说明和演示材料。
-- 后端学习达到能解释 API、数据库、鉴权、分层和局域网访问。
-- 再决定项目后端采用 Supabase、Ktor，还是混合方案。
+暂缓：完整 IM、推荐算法、微服务、Kubernetes 和复杂线上部署。
 
 ## 3. 成员分工
 
-- 团队大脑 / 总控：维护方向、任务、优先级、验收和跨成员同步。
-- 产品设计：用户流程、MVP 范围、验收标准、毕设叙事。
-- 架构：模块边界、数据流、接口契约、ADR。
-- 服务端 / Ktor 学习：用 Kotlin + Ktor 学后端，不以项目交付为第一目标。
-- Android 前端：Android 论坛 UI、状态、Repository、接口/mock 对接。
-- Godot 前端：游戏场景、交互、资源、玩法原型。
-- Web 管理后台：审核、用户、公告、配置、统计等后台能力。
+- 团队大脑：方向、优先级、验收和跨成员同步。
+- 产品设计：用户流程、MVP、验收标准和毕设叙事。
+- 架构：模块边界、数据流、接口契约和 ADR。
+- Ktor 后端学习：HTTP、API、数据库、鉴权、分层和部署基础。
+- Android 前端：论坛 UI、状态、Repository 和 API 对接。
+- Web 管理后台：审核、用户、公告和统计。
 - iOS 论坛：主线稳定后再启动。
-- 指导老师 / 毕设顾问：题目、论文结构、答辩表达。
+- 毕设顾问：题目、论文结构和答辩表达。
 
 ## 4. 技术路线
 
-- Android：Kotlin，现代 Android / Jetpack 生态。
-- Godot：Godot 4.x。
-- 后端学习：Kotlin + Ktor，PostgreSQL，Gradle，kotlinx.serialization。
-- Web 后台：TypeScript + 主流前端框架和成熟 UI 组件库。
-- 数据库学习：客户端不直连数据库，必须经过 API。
+- Android：Kotlin、Jetpack、Ktor Client。
+- 后端：Kotlin、Ktor、PostgreSQL、Gradle、kotlinx.serialization。
+- Web：TypeScript、主流前端框架和成熟组件库。
+- 数据边界：客户端只访问 API，不直连数据库。
 
-技术原则：
+要求使用行业常用、稳定、可维护的方案。遇到问题先复现、定位、修复和验证；换方案必须说明原因并等待用户确认。
 
-- 用行业常用、稳定、可维护方案。
-- 遇到问题先复现、定位、查官方文档、最小修复、验证。
-- 不为省事绕开架构、权限、错误处理和长期维护。
-- 需要降级或换技术，必须记录原因并等用户确认。
+## 5. 仓库
 
-## 5. Git 与 GitHub
+`D:\Cards-All` 是一个 Gradle 多模块仓库：
 
-仓库策略：
+- `community`：Android 论坛。
+- `server`：Ktor 后端。
+- `docs`：项目约束和学习资料。
 
-- Godot 游戏端和 Android 论坛端优先独立 Git 仓库，不共用一个仓库。
-- `D:\Cards-All` 作为本地总工作区和文档中枢。
-- Ktor 后端学习先本地实验，稳定后再决定是否单独建仓。
-
-GitHub 仓库名建议：
-
-```text
-cards-godot-game
-cards-android-forum
-```
-
-GitHub 描述必须中英双语：
-
-```text
-Cards Godot game client / Cards 项目 Godot 游戏客户端
-Android forum client for the Cards community / Cards 社区 Android 论坛客户端
-```
-
-分支、提交、合并规则见 `docs/TEAM_RULES.md`。
+分支、提交和合并规则见 `docs/TEAM_RULES.md`。
 
 ## 6. 当前优先级
 
-1. 所有成员遵守独立分支工作流。
-2. 精简文档，减少上下文负担。
-3. Ktor 后端学习先跑通本地最小链路。
-4. Godot 和 Android 论坛各自推进 MVP。
-5. Web 管理后台后续跟进。
-6. 每次任务结束必须交接。
+1. 完成 Android 论坛核心流程。
+2. 推进 Ktor、PostgreSQL、CRUD、分层和鉴权学习。
+3. 稳定 API 契约和错误格式。
+4. 启动最小 Web 管理后台。
+5. 补齐测试、README、部署说明和毕设材料。
 
 ## 7. 关键文档
 
-- `docs/TEAM_RULES.md`：所有成员硬规则。
-- `docs/KTOR_BACKEND_LEARNING.md`：Ktor 后端学习路线。
-- `docs/ARCHITECTURE.md`：当前架构基线。
-- `docs/SUPABASE_LEARNING.md`：Supabase 备用学习资料。
-- `docs/handoff/`：历史交接记录，可能过期，使用前要对照本文档。
+- `docs/TEAM_RULES.md`：团队硬规则。
+- `docs/KTOR_BACKEND_LEARNING.md`：后端学习路线。
+- `docs/ARCHITECTURE.md`：架构基线。
+- `docs/adr/`：关键技术决策。
+- `docs/SUPABASE_LEARNING.md`：备用资料，不是当前主线。

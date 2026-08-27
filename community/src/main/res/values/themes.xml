@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.CardsCommunity" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/community_primary</item>
+        <item name="colorOnPrimary">@color/community_on_primary</item>
+        <item name="android:windowBackground">@color/community_background</item>
+        <item name="android:navigationBarColor">@color/community_surface</item>
+        <item name="android:statusBarColor">@color/community_surface</item>
+        <item name="android:windowLightStatusBar">true</item>
+    </style>
+</resources>
