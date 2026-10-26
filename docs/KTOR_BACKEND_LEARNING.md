@@ -6,6 +6,16 @@
 
 Kotlin 是语言，Ktor 是后端框架。
 
+## 当前进度（2026-10-26）
+
+- 已加入 PostgreSQL JDBC 驱动、环境变量配置、连接函数和 `PostRepository.findAll()`。
+- 启动时临时查询 `public.posts` 并打印数量；本地运行截图显示数量为 0，随后 Ktor 正常启动。
+- 原有帖子接口仍使用内存 Map，尚未切换到数据库；本次查询不会修改表数据。
+- 运行前需启动 PostgreSQL，并在后端运行配置中设置 `DB_PASSWORD`，不要将密码提交到 Git。
+- `DB_URL` 默认 `jdbc:postgresql://127.0.0.1:5432/cards_community_learning`，`DB_USER` 默认 `cards_user`。
+- 临时查询在服务器启动前执行，缺少密码或连接失败会阻止启动。
+- 下一步：验证有数据时的查询，再逐步将帖子接口接入 Repository。
+
 ## 1. 当前边界
 
 - 本地学习优先，不需要公网服务器。

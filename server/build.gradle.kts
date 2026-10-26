@@ -31,6 +31,9 @@ dependencies {
     implementation(libs.logback.classic)
     //提供统一的日志调用接口
     implementation(libs.slf4j.api)
+    //让后端能够连接PostgreSQL数据库
+    implementation(libs.postgresql)
+
 }
 //标记入口文件
 application {

@@ -17,6 +17,9 @@ constraintlayout = "2.2.1"
 
 slf4jApi = "2.0.18"
 
+#PostgreSQL数据库驱动版本
+postgresql = "42.7.14"
+
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -38,6 +41,9 @@ androidx-activity = { group = "androidx.activity", name = "activity", version.re
 androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
 
 slf4j-api = { module = "org.slf4j:slf4j-api", version.ref = "slf4jApi" }
+
+#PostgreSQL数据库
+postgresql = { module = "org.postgresql:postgresql", version.ref = "postgresql" }
 
 
 [plugins]

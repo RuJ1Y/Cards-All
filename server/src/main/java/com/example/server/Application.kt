@@ -17,6 +17,11 @@ import io.ktor.server.request.receive
 import java.util.concurrent.ConcurrentHashMap
 
 fun main(){
+    //临时测试数据库查询
+    val config = loadDatabaseConfig()
+    val repository = PostRepository(config)
+    val databasePosts = repository.findAll()
+    println("数据库中的帖子数量：${databasePosts.size}")
 
     //创建一个线程安全的整数，初始值是 0
     val totalClicks = AtomicInteger(0)
