@@ -14,21 +14,17 @@ import io.ktor.server.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.server.response.respond
 import kotlinx.serialization.Serializable
 import io.ktor.server.request.receive
-import java.util.concurrent.ConcurrentHashMap
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
+import io.ktor.server.routing.put
 
 fun main(){
-    //临时测试数据库查询
+    //配置数据库参数
     val config = loadDatabaseConfig()
     val repository = PostRepository(config)
-    val databasePosts = repository.findAll()
-    println("数据库中的帖子数量：${databasePosts.size}")
 
     //创建一个线程安全的整数，初始值是 0
     val totalClicks = AtomicInteger(0)
-    //记录总帖子数，用于创建新帖子id
-    val postIdCounter = AtomicInteger(0)
-    //使用HashMap记录发布的所有帖子
-    val posts = ConcurrentHashMap<Int, PostResponse>()
 
     //用 Netty 创建一个 Ktor 服务器，监听这台电脑的 8080 端口
     embeddedServer(
@@ -41,8 +37,8 @@ fun main(){
         }
         routing { //所有接口都写在 routing { } 里面
 
+            //Ktor 收到请求后，会提供一个 ApplicationCall 对象，在路由里用 call 访问它
             get("/ping") {
-//                call.respondText("""{"message":"pong"}""")//手搓json
                 call.respond(PingResponse("pong"))//自动转为json
             }
 
@@ -64,7 +60,9 @@ fun main(){
                     )
                     return@get
                 }
-                val post = posts[id]
+                val post = withContext(Dispatchers.IO){
+                    repository.findById(id)
+                }
                 if (post == null) {
                     call.respond(
                         HttpStatusCode.NotFound,
@@ -76,7 +74,10 @@ fun main(){
             }
 
             get("/posts") {
-                call.respond(posts.values.toList())
+                val databasePosts = withContext(Dispatchers.IO){
+                    repository.findAll()
+                }
+                call.respond(databasePosts)
             }
 
             post("/clicks"){
@@ -100,13 +101,26 @@ fun main(){
                     )
                     return@post
                 }
-                val post = PostResponse(//替换为带id的成品帖子
-                    id = postIdCounter.incrementAndGet(),
-                    title = request.title,
-                    content = request.content
-                )
-                posts[post.id]=post//保存帖子到仓库
+                val post = withContext(Dispatchers.IO){
+                    repository.create(
+                        title = request.title,
+                        content = request.content
+                    )
+                }
                 call.respond(HttpStatusCode.Created, post)
+            }
+
+            put("/posts/{id}") {
+                val id = call.parameters["id"]?.toIntOrNull()
+                if (id == null) {
+                    call.respond(
+                        HttpStatusCode.BadRequest,
+                        mapOf("message" to "帖子 ID 必须是数字")
+                    )
+                    return@put
+                }
+
+                val request = call.receive<UpdatePostRequest>()
             }
 
         }
@@ -118,17 +132,27 @@ fun main(){
 data class PingResponse(
     val message: String
 )
+
 //点击数
 @Serializable
 data class ClicksResponse(
     val totalClicks: Int
 )
+
 //用户帖子数据
 @Serializable
 data class CreatePostRequest(
     val title: String,
     val content: String
 )
+
+//用户修改帖子所需的数据
+@Serializable
+data class UpdatePostRequest(
+    val title: String,
+    val content: String
+)
+
 //让服务器返回一个由它生成的帖子ID
 @Serializable
 data class PostResponse(
