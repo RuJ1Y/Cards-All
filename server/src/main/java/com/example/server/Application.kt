@@ -17,6 +17,7 @@ import io.ktor.server.request.receive
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import io.ktor.server.routing.put
+import io.ktor.server.routing.delete
 
 fun main(){
     //配置数据库参数
@@ -119,8 +120,64 @@ fun main(){
                     )
                     return@put
                 }
-
                 val request = call.receive<UpdatePostRequest>()
+
+                if (request.title.isBlank()) {
+                    call.respond(
+                        HttpStatusCode.BadRequest,
+                        mapOf("message" to "标题不能为空")
+                    )
+                    return@put
+                }
+                if (request.content.isBlank()) {
+                    call.respond(
+                        HttpStatusCode.BadRequest,
+                        mapOf("message" to "内容不能为空")
+                    )
+                    return@put
+                }
+
+                val post = withContext(Dispatchers.IO){
+                    repository.update(
+                        id = id,
+                        title = request.title,
+                        content = request.content
+                    )
+                }
+                if (post == null){
+                    call.respond(
+                        HttpStatusCode.NotFound,
+                        mapOf("message" to "帖子不存在")
+                    )
+                    return@put
+                }
+                call.respond(HttpStatusCode.OK, post)
+            }
+
+            delete("/posts/{id}") {
+                val id = call.parameters["id"]?.toIntOrNull()
+
+                if (id == null) {
+                    call.respond(
+                        HttpStatusCode.BadRequest,
+                        mapOf("message" to "帖子 ID 必须是数字")
+                    )
+                    return@delete
+                }
+
+                val deleted = withContext(Dispatchers.IO) {
+                    repository.deleteById(id)
+                }
+
+                if (!deleted) {
+                    call.respond(
+                        HttpStatusCode.NotFound,
+                        mapOf("message" to "帖子不存在")
+                    )
+                    return@delete
+                }
+
+                call.respond(HttpStatusCode.NoContent)
             }
 
         }

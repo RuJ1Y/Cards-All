@@ -33,7 +33,8 @@ dependencies {
     implementation(libs.slf4j.api)
     //让后端能够连接PostgreSQL数据库
     implementation(libs.postgresql)
-
+    //集中处理服务端异常和错误响应
+    implementation(libs.ktor.server.status.pages.jvm)
 }
 //标记入口文件
 application {

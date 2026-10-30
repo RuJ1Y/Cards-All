@@ -101,5 +101,17 @@ class PostRepository ( private val config: DatabaseConfig ){
         }
 
     }
+    //根据 ID 删除帖子，返回是否成功删除
+    fun deleteById(id: Int): Boolean {
+        val sql = "DELETE FROM public.posts WHERE id = ?"
 
+        openDatabaseConnection(config).use { connection ->
+            connection.prepareStatement(sql).use { statement ->
+                statement.setInt(1, id)
+
+                val affectedRows = statement.executeUpdate()
+                return affectedRows > 0
+            }
+        }
+    }
 }

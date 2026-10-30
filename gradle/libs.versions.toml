@@ -41,6 +41,8 @@ androidx-activity = { group = "androidx.activity", name = "activity", version.re
 androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
 
 slf4j-api = { module = "org.slf4j:slf4j-api", version.ref = "slf4jApi" }
+#集中处理服务端异常和错误响应
+ktor-server-status-pages-jvm = { module = "io.ktor:ktor-server-status-pages-jvm", version.ref = "ktorClientAndroidVersion" }
 
 #PostgreSQL数据库
 postgresql = { module = "org.postgresql:postgresql", version.ref = "postgresql" }
